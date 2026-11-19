@@ -1,3 +1,4 @@
+# Terraform
 .terraform/
 *.tfstate
 *.tfstate.*
@@ -5,5 +6,13 @@
 *.tfplan
 tfplan
 crash.log
-.venv/
+# Secrets and local files
+.env
+*.pem
+*.key
+.DS_Store
+# Scan output that may contain sensitive paths
+*.sarif
+# Python
 __pycache__/
+.venv/
