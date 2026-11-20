@@ -1,0 +1,85 @@
+name: iac
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: iac-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TRIVY_VERSION: "0.76.1"
+  TRIVY_SHA256: "c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0"
+  CHECKOV_VERSION: "3.4.5"
+
+jobs:
+  scan:
+    name: scan (${{ matrix.config }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - config: initial
+            gate: "false"
+          - config: reviewed
+            gate: "true"
+    env:
+      CONFIG: ${{ matrix.config }}
+      GATE: ${{ matrix.gate }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Trivy (checksum verified)
+        run: |
+          curl -sSfL -o trivy.tar.gz "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz"
+          echo "${TRIVY_SHA256}  trivy.tar.gz" | sha256sum -c -
+          tar -xzf trivy.tar.gz trivy
+      - name: Install Checkov
+        run: |
+          python3 -m venv "$RUNNER_TEMP/ck"
+          "$RUNNER_TEMP/ck/bin/pip" install --no-cache-dir "checkov==${CHECKOV_VERSION}"
+      - name: Write reports
+        run: |
+          mkdir -p reports
+          "$RUNNER_TEMP/ck/bin/checkov" -d "terraform/${CONFIG}" --framework terraform --compact --quiet --soft-fail -o json > "reports/checkov-${CONFIG}.json"
+          ./trivy config --severity HIGH,CRITICAL --format json --output "reports/trivy-${CONFIG}.json" --skip-version-check "terraform/${CONFIG}"
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, os
+          c = os.environ["CONFIG"]
+          ck = json.load(open(f"reports/checkov-{c}.json"))["summary"]
+          tv = {"CRITICAL": 0, "HIGH": 0}
+          for r in json.load(open(f"reports/trivy-{c}.json")).get("Results") or []:
+              for m in r.get("Misconfigurations") or []:
+                  if m.get("Status") == "FAIL" and m.get("Severity") in tv:
+                      tv[m["Severity"]] += 1
+          mode = "gated" if os.environ["GATE"] == "true" else "report only"
+          print(f"### {c} ({mode})\n")
+          print("| Scanner | Result |\n|---|---|")
+          print(f"| Checkov | {ck['failed']} failed, {ck['passed']} passed, {ck['skipped']} skipped |")
+          print(f"| Trivy | {tv['CRITICAL']} critical, {tv['HIGH']} high |")
+          PY
+      - name: Gate, Checkov must have no failed checks
+        if: ${{ !cancelled() && matrix.gate == 'true' }}
+        run: |
+          "$RUNNER_TEMP/ck/bin/checkov" -d "terraform/${CONFIG}" --framework terraform --compact --quiet
+      - name: Gate, Trivy must have no HIGH or CRITICAL
+        if: ${{ !cancelled() && matrix.gate == 'true' }}
+        run: |
+          ./trivy config --severity HIGH,CRITICAL --exit-code 1 --skip-version-check "terraform/${CONFIG}"
+      - name: Keep the reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: iac-reports-${{ matrix.config }}
+          path: reports/
+          if-no-files-found: ignore
