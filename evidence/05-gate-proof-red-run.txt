@@ -1,0 +1,323 @@
+scan (initial)	Gate, Checkov must have no failed checks	﻿2026-11-20T04:51:42.2702049Z ##[group]Run "$RUNNER_TEMP/ck/bin/checkov" -d "terraform/${CONFIG}" --framework terraform --compact --quiet
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:42.2702750Z ^[[36;1m"$RUNNER_TEMP/ck/bin/checkov" -d "terraform/${CONFIG}" --framework terraform --compact --quiet^[[0m
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:42.2727801Z shell: /usr/bin/bash -e {0}
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:42.2728119Z env:
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:42.2728332Z   TRIVY_VERSION: 0.76.1
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:42.2728678Z   TRIVY_SHA256: c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:42.2729055Z   CHECKOV_VERSION: 3.4.5
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:42.2729284Z   CONFIG: initial
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:42.2729491Z   GATE: true
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:42.2729699Z ##[endgroup]
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0336380Z terraform scan results:
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0336724Z 
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0336963Z Passed checks: 11, Failed checks: 29, Skipped checks: 0
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0337245Z 
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0337487Z Check: CKV_AWS_70: "Ensure S3 bucket does not allow an action with any Principal"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0338010Z 	FAILED for resource: aws_s3_bucket_policy.assets
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0338521Z 	File: /main.tf:29-40
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0339086Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-23
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0339768Z Check: CKV_AWS_382: "Ensure no security groups allow egress from 0.0.0.0:0 to port -1"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0340152Z 	FAILED for resource: aws_security_group.web
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0340440Z 	File: /main.tf:42-66
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0340880Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/bc-aws-382
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0341724Z Check: CKV_AWS_23: "Ensure every security group and rule has a description"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0342122Z 	FAILED for resource: aws_security_group.web
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0342368Z 	File: /main.tf:42-66
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0342819Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0343387Z Check: CKV_AWS_24: "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0343739Z 	FAILED for resource: aws_security_group.web
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0344023Z 	File: /main.tf:42-66
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0344628Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0345356Z Check: CKV_AWS_355: "Ensure no IAM policies documents allow "*" as a statement's resource for restrictable actions"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0345809Z 	FAILED for resource: aws_iam_policy.deploy
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0346069Z 	File: /main.tf:68-78
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0346502Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-355
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0347007Z Check: CKV_AWS_286: "Ensure IAM policies does not allow privilege escalation"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0347356Z 	FAILED for resource: aws_iam_policy.deploy
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0347613Z 	File: /main.tf:68-78
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0347997Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-286
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0348646Z Check: CKV_AWS_62: "Ensure IAM policies that allow full "*-*" administrative privileges are not created"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0349037Z 	FAILED for resource: aws_iam_policy.deploy
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0349297Z 	File: /main.tf:68-78
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0349701Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-iam-45
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0350194Z Check: CKV_AWS_287: "Ensure IAM policies does not allow credentials exposure"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0350575Z 	FAILED for resource: aws_iam_policy.deploy
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0350827Z 	File: /main.tf:68-78
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0351218Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-287
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0351744Z Check: CKV_AWS_288: "Ensure IAM policies does not allow data exfiltration"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0352494Z 	FAILED for resource: aws_iam_policy.deploy
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0352793Z 	File: /main.tf:68-78
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0353190Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-288
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0353712Z Check: CKV_AWS_63: "Ensure no IAM policies documents allow "*" as a statement's actions"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0354079Z 	FAILED for resource: aws_iam_policy.deploy
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0354337Z 	File: /main.tf:68-78
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0355014Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/iam-48
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0355693Z Check: CKV_AWS_289: "Ensure IAM policies does not allow permissions management / resource exposure without constraints"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0356125Z 	FAILED for resource: aws_iam_policy.deploy
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0356387Z 	File: /main.tf:68-78
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0356800Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-289
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0357334Z Check: CKV_AWS_290: "Ensure IAM policies does not allow write access without constraints"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0357697Z 	FAILED for resource: aws_iam_policy.deploy
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0357933Z 	File: /main.tf:68-78
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0358375Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-290
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0359097Z Check: CKV_AWS_8: "Ensure all data stored in the Launch configuration or instance Elastic Blocks Store is securely encrypted"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0359564Z 	FAILED for resource: aws_instance.web
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0359815Z 	File: /main.tf:80-85
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0360226Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/general-13
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0360732Z Check: CKV_AWS_135: "Ensure that EC2 is EBS optimized"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0361036Z 	FAILED for resource: aws_instance.web
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0361295Z 	File: /main.tf:80-85
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0361791Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-ec2-is-ebs-optimized
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0362374Z Check: CKV_AWS_126: "Ensure that detailed monitoring is enabled for EC2 instances"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0362734Z 	FAILED for resource: aws_instance.web
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0362990Z 	File: /main.tf:80-85
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0363543Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/ensure-that-detailed-monitoring-is-enabled-for-ec2-instances
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0364184Z Check: CKV_AWS_88: "EC2 instance should not have public IP."
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0364713Z 	FAILED for resource: aws_instance.web
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0365008Z 	File: /main.tf:80-85
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0365522Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/public-policies/public-12
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0366072Z Check: CKV_AWS_79: "Ensure Instance Metadata Service Version 1 is not enabled"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0366411Z 	FAILED for resource: aws_instance.web
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0366653Z 	File: /main.tf:80-85
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0367080Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/bc-aws-general-31
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0367650Z Check: CKV_AWS_66: "Ensure that CloudWatch Log Group specifies retention days"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0368001Z 	FAILED for resource: aws_cloudwatch_log_group.app
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0368274Z 	File: /main.tf:87-89
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0368680Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/logging-13
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0369217Z Check: CKV_AWS_338: "Ensure CloudWatch log groups retains logs for at least 1 year"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0369597Z 	FAILED for resource: aws_cloudwatch_log_group.app
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0369852Z 	File: /main.tf:87-89
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0370436Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-338
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0370989Z Check: CKV_AWS_158: "Ensure that CloudWatch Log Group is encrypted by KMS"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0371356Z 	FAILED for resource: aws_cloudwatch_log_group.app
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0371640Z 	File: /main.tf:87-89
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0372154Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-cloudwatch-log-group-is-encrypted-by-kms
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0372807Z Check: CKV_AWS_145: "Ensure that S3 buckets are encrypted with KMS by default"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0373143Z 	FAILED for resource: aws_s3_bucket.assets
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0373447Z 	File: /main.tf:25-27
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0373983Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-buckets-are-encrypted-with-kms-by-default
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0374729Z Check: CKV2_AWS_6: "Ensure that S3 bucket has a Public Access block"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0375090Z 	FAILED for resource: aws_s3_bucket.assets
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0375339Z 	File: /main.tf:25-27
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0376070Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0376897Z Check: CKV2_AWS_61: "Ensure that an S3 bucket has a lifecycle configuration"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0377261Z 	FAILED for resource: aws_s3_bucket.assets
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0377531Z 	File: /main.tf:25-27
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0377945Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-61
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0378461Z Check: CKV2_AWS_41: "Ensure an IAM role is attached to EC2 instance"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0378786Z 	FAILED for resource: aws_instance.web
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0379035Z 	File: /main.tf:80-85
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0379543Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/ensure-an-iam-role-is-attached-to-ec2-instance
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0380177Z Check: CKV2_AWS_62: "Ensure S3 buckets should have event notifications enabled"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0380531Z 	FAILED for resource: aws_s3_bucket.assets
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0380787Z 	File: /main.tf:25-27
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0381197Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-logging-policies/bc-aws-2-62
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0381734Z Check: CKV_AWS_144: "Ensure that S3 bucket has cross-region replication enabled"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0382075Z 	FAILED for resource: aws_s3_bucket.assets
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0382329Z 	File: /main.tf:25-27
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0382886Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-general-policies/ensure-that-s3-bucket-has-cross-region-replication-enabled
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0383563Z Check: CKV2_AWS_40: "Ensure AWS IAM policy does not allow full IAM privileges"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0383919Z 	FAILED for resource: aws_iam_policy.deploy
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0384174Z 	File: /main.tf:68-78
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0384710Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-iam-policies/bc-aws-2-40
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0385234Z Check: CKV_AWS_18: "Ensure the S3 bucket has access logging enabled"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0385550Z 	FAILED for resource: aws_s3_bucket.assets
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0385794Z 	File: /main.tf:25-27
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0386204Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-13-enable-logging
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0386818Z Check: CKV_AWS_21: "Ensure all data stored in the S3 bucket have versioning enabled"
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0387215Z 	FAILED for resource: aws_s3_bucket.assets
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0387488Z 	File: /main.tf:25-27
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0387932Z 	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/s3-16-enable-versioning
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.0388469Z 
+scan (initial)	Gate, Checkov must have no failed checks	2026-11-20T04:51:44.3406919Z ##[error]Process completed with exit code 1.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	﻿2026-11-20T04:51:44.3452497Z ##[group]Run ./trivy config --severity HIGH,CRITICAL --exit-code 1 --skip-version-check "terraform/${CONFIG}"
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3453110Z ^[[36;1m./trivy config --severity HIGH,CRITICAL --exit-code 1 --skip-version-check "terraform/${CONFIG}"^[[0m
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3478654Z shell: /usr/bin/bash -e {0}
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3478935Z env:
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3479224Z   TRIVY_VERSION: 0.76.1
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3479582Z   TRIVY_SHA256: c7cbe3137fb8a48a17574bede3dd6beb16742d1e9772929940fc90082c39d9c0
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3479955Z   CHECKOV_VERSION: 3.4.5
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3480193Z   CONFIG: initial
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3480404Z   GATE: true
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3480626Z ##[endgroup]
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3989851Z 2026-11-20T04:51:44Z	INFO	[misconfig] Misconfiguration scanning is enabled
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.3990590Z 2026-11-20T04:51:44Z	INFO	[checks-client] Using existing checks from cache	path="/home/runner/.cache/trivy/policy/content"
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9507419Z 2026-11-20T04:51:44Z	INFO	[terraform scanner] Scanning root module	file_path="."
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9706720Z 2026-11-20T04:51:44Z	INFO	Detected config files	num=2
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9709253Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9709434Z Report Summary
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9709578Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9710067Z ┌─────────┬───────────┬───────────────────┐
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9710628Z │ Target  │   Type    │ Misconfigurations │
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9711033Z ├─────────┼───────────┼───────────────────┤
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9711391Z │ .       │ terraform │         0         │
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9711838Z ├─────────┼───────────┼───────────────────┤
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9712253Z │ main.tf │ terraform │         9         │
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9712673Z └─────────┴───────────┴───────────────────┘
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9712988Z Legend:
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9713245Z - '-': Not scanned
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9713560Z - '0': Clean (no security findings detected)
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9713706Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9713753Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9713862Z main.tf (terraform)
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9714138Z ===================
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9714367Z Tests: 9 (SUCCESSES: 0, FAILURES: 9)
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9714822Z Failures: 9 (HIGH: 8, CRITICAL: 1)
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9714993Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9715152Z AWS-0028 (HIGH): Instance does not require IMDS access to require a token.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9715582Z ════════════════════════════════════════
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9716013Z IMDS v2 (Instance Metadata Service) introduced session authentication tokens which improve security when talking to IMDS.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9716371Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9716589Z By default <code>aws_instance</code> resource sets IMDS session auth tokens to be optional.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9716856Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9717236Z To fully protect IMDS you need to enable session tokens by using <code>metadata_options</code> block and its <code>http_tokens</code> variable set to <code>required</code>.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9717826Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9717829Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9717999Z See https://avd.aquasec.com/misconfig/aws-0028
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9718364Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9718703Z  main.tf:80-85
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9718956Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9719278Z   80 ┌ resource "aws_instance" "web" {
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9719634Z   81 │   ami                         = var.ami_id
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9719975Z   82 │   instance_type               = "t3.micro"
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9720328Z   83 │   vpc_security_group_ids      = [aws_security_group.web.id]
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9720672Z   84 │   associate_public_ip_address = true
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9720955Z   85 └ }
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9721192Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9721363Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9721367Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9721523Z AWS-0086 (HIGH): No public access block so not blocking public acls
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9721894Z ════════════════════════════════════════
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9722370Z S3 buckets should block public ACLs on buckets and any objects they contain. By blocking, PUTs with fail if the object has any public ACL a.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9722857Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9722861Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9723017Z See https://avd.aquasec.com/misconfig/aws-0086
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9723355Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9723596Z  main.tf:25-27
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9723849Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9724174Z   25 ┌ resource "aws_s3_bucket" "assets" {
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9724635Z   26 │   bucket = "northwind-assets-demo"
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9724938Z   27 └ }
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9725203Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9725350Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9725353Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9725527Z AWS-0087 (HIGH): No public access block so not blocking public policies
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9725893Z ════════════════════════════════════════
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9726301Z S3 bucket policy should have block public policy to prevent users from putting a policy that enable public access.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9726698Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9726701Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9726815Z See https://avd.aquasec.com/misconfig/aws-0087
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9727113Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9727376Z  main.tf:25-27
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9727673Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9727957Z   25 ┌ resource "aws_s3_bucket" "assets" {
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9728259Z   26 │   bucket = "northwind-assets-demo"
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9728503Z   27 └ }
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9728756Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9728918Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9728922Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9729056Z AWS-0091 (HIGH): No public access block so not blocking public acls
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9729403Z ════════════════════════════════════════
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9729990Z S3 buckets should ignore public ACLs on buckets and any objects they contain. By ignoring rather than blocking, PUT calls with public ACLs will still be applied but the ACL will be ignored.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9730554Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9730559Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9730684Z See https://avd.aquasec.com/misconfig/aws-0091
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9731026Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9731261Z  main.tf:25-27
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9731507Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9731807Z   25 ┌ resource "aws_s3_bucket" "assets" {
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9732093Z   26 │   bucket = "northwind-assets-demo"
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9732362Z   27 └ }
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9732593Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9732753Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9732756Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9732932Z AWS-0093 (HIGH): No public access block so not restricting public buckets
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9733320Z ════════════════════════════════════════
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9733862Z S3 buckets should restrict public policies for the bucket. By enabling, the restrict_public_buckets, only the bucket owner and AWS Services can access if it has a public policy.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9734332Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9734402Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9755077Z See https://avd.aquasec.com/misconfig/aws-0093
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9755701Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9756016Z  main.tf:25-27
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9756435Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9756907Z   25 ┌ resource "aws_s3_bucket" "assets" {
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9757355Z   26 │   bucket = "northwind-assets-demo"
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9757723Z   27 └ }
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9758047Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9758312Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9758320Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9758679Z AWS-0104 (CRITICAL): Security group rule allows unrestricted egress to any IP address.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9759307Z ════════════════════════════════════════
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9760057Z Opening up ports to connect out to the public internet is generally to be avoided. You should restrict access to IP addresses or ranges that are explicitly required where possible.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9760744Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9760762Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9760937Z See https://avd.aquasec.com/misconfig/aws-0104
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9761310Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9761646Z  main.tf:64
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9761896Z    via main.tf:60-65 (egress)
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9762213Z     via main.tf:42-66 (aws_security_group.web)
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9762598Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9762919Z   42   resource "aws_security_group" "web" {
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9763257Z   ..   
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9763522Z   64 [     cidr_blocks = ["0.0.0.0/0"]
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9763846Z   ..   
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9764086Z   66   }
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9764380Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9764728Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9764735Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9765251Z AWS-0107 (HIGH): Security group rule allows unrestricted ingress from any IP address.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9765785Z ════════════════════════════════════════
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9766254Z Security groups provide stateful filtering of ingress and egress network traffic to AWS
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9766948Z resources. It is recommended that no security group allows unrestricted ingress access to
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9767607Z remote server administration ports, such as SSH to port 22 and RDP to port 3389.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9767925Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9767929Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9768151Z See https://avd.aquasec.com/misconfig/aws-0107
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9768566Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9768869Z  main.tf:50
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9769195Z    via main.tf:46-51 (ingress)
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9769528Z     via main.tf:42-66 (aws_security_group.web)
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9769956Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9770318Z   42   resource "aws_security_group" "web" {
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9770662Z   ..   
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9770966Z   50 [     cidr_blocks = ["0.0.0.0/0"]
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9771280Z   ..   
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9771539Z   66   }
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9771967Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9772167Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9772202Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9772356Z AWS-0131 (HIGH): Root block device is not encrypted.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9773119Z ════════════════════════════════════════
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9773600Z Block devices should be encrypted to ensure sensitive data is held securely at rest.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9774023Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9774027Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9774214Z See https://avd.aquasec.com/misconfig/aws-0131
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9775071Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9775358Z  main.tf:80-85
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9775658Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9775988Z   80 ┌ resource "aws_instance" "web" {
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9776372Z   81 │   ami                         = var.ami_id
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9776842Z   82 │   instance_type               = "t3.micro"
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9777346Z   83 │   vpc_security_group_ids      = [aws_security_group.web.id]
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9777843Z   84 │   associate_public_ip_address = true
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9778263Z   85 └ }
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9778523Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9778707Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9778712Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9778939Z AWS-0132 (HIGH): Bucket does not encrypt data with a customer managed key.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9779402Z ════════════════════════════════════════
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9780311Z Encryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9781396Z Note that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9781888Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9781892Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9782048Z See https://avd.aquasec.com/misconfig/aws-0132
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9782467Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9782824Z  main.tf:25-27
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9783131Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9783546Z   25 ┌ resource "aws_s3_bucket" "assets" {
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9783903Z   26 │   bucket = "northwind-assets-demo"
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9784252Z   27 └ }
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9784758Z ────────────────────────────────────────
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9784945Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9784950Z 
+scan (initial)	Gate, Trivy must have no HIGH or CRITICAL	2026-11-20T04:51:44.9805943Z ##[error]Process completed with exit code 1.
