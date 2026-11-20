@@ -29,7 +29,7 @@ jobs:
       matrix:
         include:
           - config: initial
-            gate: "false"
+            gate: "true"
           - config: reviewed
             gate: "true"
     env:
