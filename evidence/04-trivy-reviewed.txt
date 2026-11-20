@@ -1,0 +1,19 @@
+2026-11-19T21:31:43+01:00	INFO	[misconfig] Misconfiguration scanning is enabled
+2026-11-19T21:31:43+01:00	INFO	[checks-client] Using existing checks from cache	path="/home/user/Library/Caches/trivy/policy/content"
+2026-11-19T21:31:44+01:00	INFO	[terraform scanner] Scanning root module	file_path="."
+2026-11-19T21:31:44+01:00	INFO	[terraform executor] Ignore finding	rule="aws-s3-encryption-customer-key" range="main.tf:122-129"
+2026-11-19T21:31:44+01:00	INFO	Detected config files	num=2
+
+Report Summary
+
+┌─────────┬───────────┬───────────────────┐
+│ Target  │   Type    │ Misconfigurations │
+├─────────┼───────────┼───────────────────┤
+│ .       │ terraform │         0         │
+├─────────┼───────────┼───────────────────┤
+│ main.tf │ terraform │         0         │
+└─────────┴───────────┴───────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
